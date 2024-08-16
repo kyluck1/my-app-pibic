@@ -1,25 +1,26 @@
 .telao {
-    position: relative;
-    width: 100vw; /* Largura da tela do navegador */
-    height: 100vh; /* Altura da tela do navegador */
-    overflow: hidden; /* Esconde elementos que saem da área visível */
-    background-color: white; /* Adiciona um fundo branco para contraste */
+  position: relative;
+  width: 100vw; /* Largura da tela do navegador */
+  height: 100vh; /* Altura da tela do navegador */
+  overflow: hidden; /* Esconde elementos que saem da área visível */
+  background-color: white; /* Adiciona um fundo branco para contraste */
+}
+
+.animated-item {
+  position: absolute;
+  font-size: 24px; /* Ajuste o tamanho da fonte conforme necessário */
+  color: black; /* Cor do texto */
+  text-align: center; /* Alinha o texto ao centro */
+  transform: translateX(-50%); /* Centraliza horizontalmente */
+}
+
+@keyframes moveUp {
+  from {
+    transform: translateY(100vh); /* Começa fora da tela, na parte inferior */
+    opacity: 1;
   }
-  
-  .animated-image {
-    position: absolute;
-    width: 100px; /* Ajuste o tamanho conforme necessário */
-    height: 100px;
+  to {
+    transform: translateY(0); /* Move para a parte superior da tela */
+    opacity: 0; /* Fica transparente ao final da animação */
   }
-  
-  @keyframes moveUp {
-    from {
-      transform: translateY(100vh); /* Começa fora da tela, na parte inferior */
-      opacity: 1;
-    }
-    to {
-      transform: translateY(0); /* Move para a parte superior da tela */
-      opacity: 0; /* Fica transparente ao final da animação */
-    }
-  }
-  
+}

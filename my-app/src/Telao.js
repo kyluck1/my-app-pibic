@@ -3,11 +3,15 @@ import { ref, onValue } from 'firebase/database';
 import { realtimeDB } from './firebase';
 import './Telao.css'; // Certifique-se de que o caminho está correto
 
-const images = [
-  { name: 'coracao', ext: 'png' },
-  { name: 'raiva', ext: 'png' },
-  { name: 'choro', ext: 'webp' },
-  { name: 'palmas', ext: 'webp' }
+const items = [
+  { type: 'image', name: 'coracao', ext: 'png' },
+  { type: 'image', name: 'raiva', ext: 'png' },
+  { type: 'image', name: 'choro', ext: 'webp' },
+  { type: 'image', name: 'palmas', ext: 'webp' },
+  { type: 'text', content: 'surpreendente' },
+  { type: 'text', content: 'triste' },
+  { type: 'text', content: 'fabuloso' },
+  { type: 'text', content: 'confuso' }
 ];
 
 function Telao() {
@@ -28,25 +32,29 @@ function Telao() {
   }, []);
 
   // Função para definir posições horizontais fixas
-  const getPosition = (index) => `${(index * 20) % 90}vw`; // Posições fixas com base no índice
+  const getPosition = (index) => `${(index * 20) % 90}vw`;
 
   return (
     <div className="telao">
       {buttonPresses.map((press, index) => (
         <div
           key={press.timestamp}
-          className="animated-image"
+          className="animated-item"
           style={{
-            left: getPosition(index), // Define uma posição horizontal fixa com base no índice
-            animation: `moveUp 4s forwards`, // Aplica a animação
+            left: getPosition(index),
+            animation: `moveUp 4s forwards`,
             zIndex: index,
           }}
         >
-          <img
-            src={`/images/${images[press.button - 1].name}.${images[press.button - 1].ext}`}
-            alt={`Button ${press.button}`}
-            style={{ width: '100px', height: '100px' }} // Ajuste o tamanho conforme necessário
-          />
+          {items[press.button - 1].type === 'image' ? (
+            <img
+              src={`/images/${items[press.button - 1].name}.${items[press.button - 1].ext}`}
+              alt={`Button ${press.button}`}
+              style={{ width: '100px', height: '100px' }}
+            />
+          ) : (
+            <span>{items[press.button - 1].content}</span>
+          )}
         </div>
       ))}
     </div>

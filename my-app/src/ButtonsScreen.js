@@ -2,32 +2,40 @@ import React from 'react';
 import { ref, push } from 'firebase/database';
 import { realtimeDB } from './firebase';
 
-// Caminho das imagens
-const images = [
-  { name: 'coracao', ext: 'png' },
-  { name: 'raiva', ext: 'png' },
-  { name: 'choro', ext: 'webp' },
-  { name: 'palmas', ext: 'webp' }
+// Caminho das imagens e palavras
+const items = [
+  { type: 'image', name: 'coracao', ext: 'png' },
+  { type: 'image', name: 'raiva', ext: 'png' },
+  { type: 'image', name: 'choro', ext: 'webp' },
+  { type: 'image', name: 'palmas', ext: 'webp' },
+  { type: 'text', content: 'surpreendente' },
+  { type: 'text', content: 'triste' },
+  { type: 'text', content: 'fabuloso' },
+  { type: 'text', content: 'confuso' }
 ];
 
 const ButtonsScreen = () => {
-  const handleButtonClick = (buttonId) => {
+  const handleButtonClick = (itemId) => {
     const buttonRef = ref(realtimeDB, 'buttonPress');
     push(buttonRef, {
-      button: buttonId,
+      button: itemId,
       timestamp: Date.now(), // Adiciona um timestamp para controle
     });
   };
 
   return (
     <div>
-      {images.map((image, index) => (
+      {items.map((item, index) => (
         <button key={index} onClick={() => handleButtonClick(index + 1)}>
-          <img 
-            src={`/images/${image.name}.${image.ext}`} // Ajusta a extensão do arquivo conforme necessário
-            alt={`Button ${index + 1}`} 
-            style={{ width: '100px', height: '100px' }} // Ajuste o tamanho conforme necessário
-          />
+          {item.type === 'image' ? (
+            <img 
+              src={`/images/${item.name}.${item.ext}`} 
+              alt={`Button ${index + 1}`} 
+              style={{ width: '100px', height: '100px' }} 
+            />
+          ) : (
+            <span>{item.content}</span>
+          )}
         </button>
       ))}
     </div>
