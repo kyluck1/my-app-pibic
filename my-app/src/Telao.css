@@ -1,0 +1,25 @@
+.telao {
+    position: relative;
+    width: 100vw; /* Largura da tela do navegador */
+    height: 100vh; /* Altura da tela do navegador */
+    overflow: hidden; /* Esconde elementos que saem da área visível */
+    background-color: white; /* Adiciona um fundo branco para contraste */
+  }
+  
+  .animated-image {
+    position: absolute;
+    width: 100px; /* Ajuste o tamanho conforme necessário */
+    height: 100px;
+  }
+  
+  @keyframes moveUp {
+    from {
+      transform: translateY(100vh); /* Começa fora da tela, na parte inferior */
+      opacity: 1;
+    }
+    to {
+      transform: translateY(0); /* Move para a parte superior da tela */
+      opacity: 0; /* Fica transparente ao final da animação */
+    }
+  }
+  
