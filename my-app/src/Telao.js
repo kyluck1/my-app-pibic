@@ -9,7 +9,7 @@ const items = [
   { type: 'image', name: 'choro', ext: 'webp' },
   { type: 'image', name: 'palmas', ext: 'webp' },
   { type: 'text', content: 'surpreendente' },
-  { type: 'text', content: 'triste' },
+  { type: 'text', content: 'triste' }, 
   { type: 'text', content: 'fabuloso' },
   { type: 'text', content: 'confuso' }
 ];
