@@ -3,13 +3,52 @@
   width: 100vw; /* Largura da tela do navegador */
   height: 100vh; /* Altura da tela do navegador */
   overflow: hidden; /* Esconde elementos que saem da área visível */
-  background-color: white; /* Adiciona um fundo branco para contraste */
+  background-image: url('/images/florestafundo.jpeg'); /* Adiciona a imagem de fundo */
+  background-size: cover; /* Garante que a imagem cubra toda a tela */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+}
+@font-face {
+  font-family: 'OhMyGodStars'; /* Nome que você dará para a fonte */
+  src: url('/fonts/OhMyGodStars.ttf') format('truetype'); /* Caminho e formato da fonte */
+  font-weight: normal; /* Pode ser 'bold', 'normal', etc. */
+  font-style: normal; /* Pode ser 'italic', 'normal', etc. */
+}
+.word {
+  
+  text-align: center;
+  transform: translateX(-50%);
+  color: white;
+}
+
+/* Estilos específicos para cada palavra */
+.surpreendente {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.triste {
+  color: white;
+  font-style: italic;
+}
+
+.fabuloso {
+  
+  color: white;
+  text-decoration: underline;
+  font-family: 'OhMyGodStars', sans-serif;
+}
+
+.confuso {
+  color: white;
+  letter-spacing: 2px;
 }
 
 .animated-item {
   position: absolute;
   font-size: 24px; /* Ajuste o tamanho da fonte conforme necessário */
-  color: black; /* Cor do texto */
+
   text-align: center; /* Alinha o texto ao centro */
   transform: translateX(-50%); /* Centraliza horizontalmente */
 }

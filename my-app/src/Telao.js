@@ -27,7 +27,6 @@ function Telao() {
       }
     });
 
-    // Cleanup subscription on unmount
     return () => unsubscribe();
   }, []);
 
@@ -36,27 +35,32 @@ function Telao() {
 
   return (
     <div className="telao">
-      {buttonPresses.map((press, index) => (
-        <div
-          key={press.timestamp}
-          className="animated-item"
-          style={{
-            left: getPosition(index),
-            animation: `moveUp 4s forwards`,
-            zIndex: index,
-          }}
-        >
-          {items[press.button - 1].type === 'image' ? (
-            <img
-              src={`/images/${items[press.button - 1].name}.${items[press.button - 1].ext}`}
-              alt={`Button ${press.button}`}
-              style={{ width: '100px', height: '100px' }}
-            />
-          ) : (
-            <span>{items[press.button - 1].content}</span>
-          )}
-        </div>
-      ))}
+      {buttonPresses.map((press, index) => {
+        const item = items[press.button - 1];
+        const className = item.type === 'text' ? `word ${item.content}` : '';
+
+        return (
+          <div
+            key={press.timestamp}
+            className={`animated-item ${className}`}
+            style={{
+              left: getPosition(index),
+              animation: `moveUp 4s forwards`,
+              zIndex: index,
+            }}
+          >
+            {item.type === 'image' ? (
+              <img
+                src={`/images/${item.name}.${item.ext}`}
+                alt={`Button ${press.button}`}
+                style={{ width: '100px', height: '100px' }}
+              />
+            ) : (
+              <span>{item.content}</span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
